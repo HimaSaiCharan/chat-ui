@@ -1,6 +1,13 @@
 import { Typography } from "@mui/material";
+import type { ReactNode } from "react";
 
-const ListHeader = ({ children, varitent }) => {
+const ListHeader = ({
+  children,
+  varitent,
+}: {
+  children: ReactNode;
+  varitent: "h3" | "h4" | "h5";
+}) => {
   return (
     <Typography
       variant={varitent}

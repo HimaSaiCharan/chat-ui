@@ -4,7 +4,7 @@ import "./../../styles/chat.css";
 import { useEffect, useRef } from "react";
 
 const Chat = ({ chat, chatName }: ChatProps) => {
-  const bottomRef = useRef(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView();

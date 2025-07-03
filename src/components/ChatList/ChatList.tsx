@@ -7,31 +7,33 @@ const ChatList = ({
   selectedChat,
   onSelect,
   chatList,
+  width,
 }: {
   chatList: ChatItem[];
   selectedChat: string;
   onSelect: (value: string) => void;
+  width: string;
 }) => {
   return (
     <Stack
       sx={{
-        width: "30%",
+        width,
         backgroundColor: "white",
         padding: "14px",
         borderRadius: "14px",
+        height: "100%",
       }}
       direction={"column"}
       spacing={2}
     >
       <ListHeader varitent="h4">Chat App</ListHeader>
-      {chatList.map(({ lastMessage, name, chatId }) => (
+      {chatList.map(({ lastMessage, name }, index) => (
         <ChatListItem
-          key={chatId}
+          key={index}
           lastMessage={lastMessage}
           name={name}
-          chatId={chatId}
           onSelect={onSelect}
-          selectedChat={selectedChat === chatId}
+          selectedChat={selectedChat === name}
         />
       ))}
     </Stack>

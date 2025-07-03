@@ -7,7 +7,6 @@ type ChatItemProps = {
   avatarUrl?: string;
   onSelect: (value: string) => void;
   selectedChat?: boolean;
-  chatId: string;
 };
 
 const ChatListItem: React.FC<ChatItemProps> = ({
@@ -16,12 +15,10 @@ const ChatListItem: React.FC<ChatItemProps> = ({
   avatarUrl,
   onSelect,
   selectedChat,
-  chatId,
 }) => {
-  console.log(selectedChat);
   return (
     <Stack
-      onClick={() => onSelect(chatId)}
+      onClick={() => onSelect(name)}
       direction={"row"}
       spacing={3}
       sx={{

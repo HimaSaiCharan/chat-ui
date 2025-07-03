@@ -3,54 +3,90 @@ import ChatList from "./components/ChatList/ChatList";
 import ChatWindow from "./components/ChatWindow/ChatWindow";
 import { useEffect, useState } from "react";
 import type { ChatDetails } from "./types/dataStructures.types";
-import chatListMockData from "./mock-data/mock-data";
-import chat1 from "./mock-data/chat-list";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import type { UserData } from "./types/dataStructures.types";
+import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
   const [selectedChat, setSelectedChat] = useState("");
-  const [chatList, setChatList] = useState();
+  const [chatList, setChatList] = useState<null | UserData>(null);
   const [chat, setChat] = useState<null | ChatDetails>(null);
 
   useEffect(() => {
     const getChatList = async () => {
       const response = await fetch("http://localhost:8000/chat-list", {
         method: "GET",
-        credentials: "include",
       });
 
-      console.log(response);
       const { data, success } = await response.json();
-      console.log("hello world");
 
       success
         ? toast.success("Chat list fetched Successfully")
         : toast.error("Failed to fetch Chat list");
 
-      console.log("this is the data from the useEffect", data);
       setChatList(data);
     };
 
     getChatList();
   }, []);
 
+  const getChat = async (value: string) => {
+    const response = await fetch(`http://localhost:8000/chat/${value}`);
+
+    const { chatName, success, chats } = await response.json();
+
+    success
+      ? toast.success("Chat fetched Successfully")
+      : toast.error("Chat failed to fetch");
+
+    setChat({ chatName, chat: chats });
+  };
+
   const handleClick = (value: string) => {
     setSelectedChat(value);
+    getChat(value);
+  };
+
+  const handleSend = async (frndName: string, msg: string = "Hi") => {
+    const response = await fetch(`http://localhost:8000/chat/${frndName}`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ message: msg }),
+    });
+
+    const { success, message } = await response.json();
+
+    success
+      ? toast.success(message ?? "Operation Successful")
+      : toast.error(message ?? "Operation Failed");
   };
 
   return (
-    <Stack
-      direction={"row"}
-      spacing={2}
-      sx={{ width: "100%", height: "100vh", p: "14px" }}
-    >
-      <ChatList
-        chatList={chatListMockData.chats}
-        selectedChat={selectedChat}
-        onSelect={handleClick}
+    <>
+      <Stack
+        direction={"row"}
+        spacing={2}
+        sx={{ width: "100%", height: "100vh", p: "14px", alignItems: "center" }}
+      >
+        <NavBar width="90px" />
+        <ChatList
+          chatList={chatList?.chats || []}
+          selectedChat={selectedChat}
+          onSelect={handleClick}
+          width="35%"
+        />
+        <ChatWindow handleSend={handleSend} chatDetails={chat} width="65%" />
+      </Stack>
+      <Toaster
+        containerStyle={{
+          position: "absolute",
+          top: "1rem",
+          right: "1rem",
+        }}
       />
-      <ChatWindow chat={chat1} />
-    </Stack>
+    </>
   );
 };
 

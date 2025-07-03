@@ -9,7 +9,6 @@ export interface ChatItem {
   name: string;
   lastMessage: string;
   avatar?: URL;
-  chatId: string;
 }
 
 export interface UserData {
@@ -20,4 +19,9 @@ export interface UserData {
 export interface ChatDetails {
   chatName: string;
   chat: Chat[];
+}
+
+export interface FoundPeople {
+  username: string;
+  isFriend: boolean;
 }
