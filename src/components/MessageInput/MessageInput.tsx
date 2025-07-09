@@ -37,7 +37,6 @@ const MessageInput = ({
       <Button
         disabled={text === ""}
         variant="contained"
-        sx={{ backgroundColor: "#8ec9f9", color: "black" }}
         onClick={handleButtonClick}
       >
         Send
