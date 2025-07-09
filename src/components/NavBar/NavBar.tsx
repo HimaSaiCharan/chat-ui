@@ -9,13 +9,13 @@ const NavBar = ({ width }: { width: string }) => {
   const [isOpen, openModal] = useState(false);
 
   const handleLogout = async () => {
-    const response = await fetch("https://chat-app-ikl8.onrender.com/logout");
+    const response = await fetch("/logout");
     const { success, message, redirectTo } = await response.json();
 
     if (!success) return toast.error(success);
 
     toast.success(message);
-    window.location.href = redirectTo;
+    globalThis.location.href = redirectTo;
   };
 
   return (

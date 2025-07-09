@@ -16,18 +16,14 @@ const SearchPeopleModal = ({
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchPeople = async (searchText: string) => {
-    const response = await fetch(
-      `https://chat-app-ikl8.onrender.com/search?name=${searchText}`
-    );
+    const response = await fetch(`/search?name=${searchText}`);
     const people: FoundPeople[] = await response.json();
 
     setFoundPeople(people);
   };
 
   const handleAddFriend = async (frndName: string) => {
-    const response = await fetch(
-      `https://chat-app-ikl8.onrender.com/request?name=${frndName}`
-    );
+    const response = await fetch(`/request?name=${frndName}`);
     const { success, message } = await response.json();
 
     success ? toast.success(message) : toast.error(message);
