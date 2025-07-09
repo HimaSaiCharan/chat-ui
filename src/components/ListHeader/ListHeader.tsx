@@ -3,14 +3,14 @@ import type { ReactNode } from "react";
 
 const ListHeader = ({
   children,
-  varitent,
+  variant,
 }: {
   children: ReactNode;
-  varitent: "h3" | "h4" | "h5";
+  variant: "h3" | "h4" | "h5";
 }) => {
   return (
     <Typography
-      variant={varitent}
+      variant={variant}
       component="div"
       sx={{
         fontWeight: "800",

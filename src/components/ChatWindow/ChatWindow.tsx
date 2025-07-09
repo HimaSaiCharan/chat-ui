@@ -26,7 +26,7 @@ const ChatWindow = ({
     >
       {chatDetails ? (
         <>
-          <ListHeader varitent={"h5"}>{chatDetails.chatName}</ListHeader>
+          <ListHeader variant={"h5"}>{chatDetails.chatName}</ListHeader>
           <Chat chat={chatDetails.chat} chatName={chatDetails.chatName} />
           <MessageInput
             handleClick={(message: string) =>

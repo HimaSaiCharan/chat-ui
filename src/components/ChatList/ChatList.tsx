@@ -22,11 +22,12 @@ const ChatList = ({
         padding: "14px",
         borderRadius: "14px",
         height: "100%",
+        overflowY: "scroll",
       }}
       direction={"column"}
       spacing={2}
     >
-      <ListHeader varitent="h4">Chat App</ListHeader>
+      <ListHeader variant="h4">Chat App</ListHeader>
       {chatList.map(({ lastMessage, name }, index) => (
         <ChatListItem
           key={index}
