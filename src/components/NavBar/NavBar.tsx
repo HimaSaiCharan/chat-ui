@@ -9,7 +9,7 @@ const NavBar = ({ width }: { width: string }) => {
   const [isOpen, openModal] = useState(false);
 
   const handleLogout = async () => {
-    const response = await fetch("http://localhost:8000/logout");
+    const response = await fetch("https://chat-app-ikl8.onrender.com/logout");
     const { success, message, redirectTo } = await response.json();
 
     if (!success) return toast.error(success);

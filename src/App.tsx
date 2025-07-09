@@ -14,7 +14,7 @@ const App = () => {
 
   useEffect(() => {
     const getChatList = async () => {
-      const response = await fetch("http://localhost:8000/chat-list", {
+      const response = await fetch("https://chat-app-ikl8.onrender.com/chat-list", {
         method: "GET",
       });
 
@@ -31,7 +31,7 @@ const App = () => {
   }, []);
 
   const getChat = async (value: string) => {
-    const response = await fetch(`http://localhost:8000/chat/${value}`);
+    const response = await fetch(`https://chat-app-ikl8.onrender.com/chat/${value}`);
 
     const { chatName, success, chats } = await response.json();
 
@@ -48,7 +48,7 @@ const App = () => {
   };
 
   const handleSend = async (frndName: string, msg: string = "Hi") => {
-    const response = await fetch(`http://localhost:8000/chat/${frndName}`, {
+    const response = await fetch(`https://chat-app-ikl8.onrender.com/chat/${frndName}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

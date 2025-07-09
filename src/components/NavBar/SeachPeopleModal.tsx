@@ -17,7 +17,7 @@ const SearchPeopleModal = ({
 
   const fetchPeople = async (searchText: string) => {
     const response = await fetch(
-      `http://localhost:8000/search?name=${searchText}`
+      `https://chat-app-ikl8.onrender.com/search?name=${searchText}`
     );
     const people: FoundPeople[] = await response.json();
 
@@ -26,7 +26,7 @@ const SearchPeopleModal = ({
 
   const handleAddFriend = async (frndName: string) => {
     const response = await fetch(
-      `http://localhost:8000/request?name=${frndName}`
+      `https://chat-app-ikl8.onrender.com/request?name=${frndName}`
     );
     const { success, message } = await response.json();
 
