@@ -11,7 +11,7 @@ const Chat = ({ chat, chatName }: ChatProps) => {
   }, [chat]);
 
   return (
-    <Stack spacing={1} sx={{ height: "100%", p: 2, overflow: "scroll" }}>
+    <Stack spacing={1} sx={{ height: "100%", p: 2, overflowY: "auto" }}>
       {chat.map((message, index) => {
         const isOwn = message.to === chatName;
 

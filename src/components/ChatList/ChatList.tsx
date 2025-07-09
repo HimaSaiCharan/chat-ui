@@ -1,19 +1,14 @@
 import { Stack } from "@mui/material";
 import ChatListItem from "../ChatListItem/ChatListItem";
 import ListHeader from "../ListHeader/ListHeader";
-import type { ChatItem } from "../../types/dataStructures.types";
+import type { ChatListProps } from "../../types/componentProp.types";
 
 const ChatList = ({
   selectedChat,
   onSelect,
   chatList,
   width,
-}: {
-  chatList: ChatItem[];
-  selectedChat: string;
-  onSelect: (value: string) => void;
-  width: string;
-}) => {
+}: ChatListProps) => {
   return (
     <Stack
       sx={{

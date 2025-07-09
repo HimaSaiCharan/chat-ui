@@ -60,9 +60,7 @@ const App = () => {
 
     const { success, message } = await response.json();
 
-    success
-      ? toast.success(message ?? "Operation Successful")
-      : toast.error(message ?? "Operation Failed");
+    success ? toast.success(message) : toast.error(message);
   };
 
   return (
