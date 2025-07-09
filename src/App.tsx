@@ -14,17 +14,19 @@ const App = () => {
 
   useEffect(() => {
     const getChatList = async () => {
-      const response = await fetch("/chat-list", {
-        method: "GET",
-      });
+      try {
+        const response = await fetch("/chat-list");
+        const { data, success } = await response.json();
 
-      const { data, success } = await response.json();
+        success
+          ? toast.success("Chat list fetched Successfully")
+          : toast.error("Failed to fetch Chat list");
 
-      success
-        ? toast.success("Chat list fetched Successfully")
-        : toast.error("Failed to fetch Chat list");
-
-      setChatList(data);
+        setChatList(data);
+      } catch (err) {
+        toast.error("Network error. Please try again.");
+        console.error("Error fetching chat list:", err);
+      }
     };
 
     getChatList();
