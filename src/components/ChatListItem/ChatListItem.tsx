@@ -34,7 +34,7 @@ const ChatListItem: React.FC<ChatItemProps> = ({
         sx={{ height: "50px", width: "50px", color: "black" }}
         src={avatarUrl}
       >
-        {name[0]}
+        {name?.[0]?.toUpperCase() || "?"}
       </Avatar>
       <ListItemText
         primary={

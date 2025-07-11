@@ -44,6 +44,14 @@ const App = () => {
     setChat({ chatName, chat: chats });
   };
 
+  useEffect(() => {
+    if (!selectedChat) return;
+
+    const intervalId = setInterval(() => getChat(selectedChat), 1000);
+
+    return () => clearInterval(intervalId);
+  }, [selectedChat]);
+
   const handleClick = (value: string) => {
     setSelectedChat(value);
     getChat(value);
